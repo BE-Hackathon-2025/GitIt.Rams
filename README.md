@@ -6,7 +6,7 @@ _______________
 ## How can we measure a state’s ability to survive a financial crisis? 🎯
 
 ## Project Description 🤯
-We created an interactive, data-driven dashboard that calculates each NC County's financial resilience and lets users define what “resilience” means to them. To make resilience measurable, we used publicly available, reliable data sources to represent key economic factors (income, unemployment, cost of living, disaster risk). Each dataset contributes to our final score based on its real-world importance. This tool empowers organizations to identify vulnerable regions and respond with targeted support, education, or resources with an AI focus on predictive identifying risks before they occur, optimizing distribution of limited resources, and guiding equitable decisions, allowing for human-reviewed interventions. 
+An interactive, data-driven dashboard that calculates each NC County's financial resilience and lets users define what “resilience” means to them. To make resilience measurable, we used publicly available, reliable data sources to represent key economic factors (income, unemployment, cost of living, disaster risk). Each dataset contributes to our final score based on its real-world importance. This tool empowers organizations to identify vulnerable regions and respond with targeted support, education, or resources with an AI focus on predictive identifying risks before they occur, optimizing distribution of limited resources, and guiding equitable decisions, allowing for human-reviewed interventions. 
 
 ## Project Value 💰
 Adjustable weight sliders so users can prioritize the metrics they care about
