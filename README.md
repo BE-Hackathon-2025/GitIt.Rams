@@ -18,19 +18,19 @@ Target scope includes pilot partners in investment, infrastructure, and communit
 
 ## Tech Overview 💻
 
-* Layer​ & Tools Used​
+- [ ] Layer​ & Tools Used​
 
-* Frontend UI: HTML/CSS/JavaScript Framework: Spring Boot 3.x​
+- [ ] Frontend UI: HTML/CSS/JavaScript Framework: Spring Boot 3.x​
 
-* Backend: Tool stack Language: Java 17+​
+- [ ] Backend: Tool stack Language: Java 17+​
 
-* (REST + static site)​: Build: Maven HTTP client: RestTemplate​
+- [ ] (REST + static site)​: Build: Maven HTTP client: RestTemplate​
 
-* Charts: Plotly.js; AI (optional): AWS Bedrock Runtime​
+- [ ] Charts: Plotly.js; AI (optional): AWS Bedrock Runtime​
 
-* Titan/Claude: AWS SDK OS/Dev: Windows, VS Code​
+- [ ] Titan/Claude: AWS SDK OS/Dev: Windows, VS Code​
 
-* Storing​: Git + GitHub​
+- [ ] Storing​: Git + GitHub​
 
 
 
@@ -55,7 +55,7 @@ Target scope includes pilot partners in investment, infrastructure, and communit
 All Hacks No Breaks
 
 ### ✨ Contributors ✨
-Jordan Bailey<br>
-Tristan Sterling<br>
-Cierrah Washington<br>
-Tyeisah Gist
+- [ ]Jordan Bailey
+- [ ]Tristan Sterling
+- [ ]Cierrah Washington
+- [ ]Tyeisah Gist
