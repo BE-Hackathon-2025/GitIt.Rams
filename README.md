@@ -13,7 +13,7 @@ We created an interactive, data-driven dashboard that calculates each NC County'
 
 ## Project Value 💰
 Adjustable weight sliders so users can prioritize the metrics they care about
-most about, County-by-county insights, visualized with bar charts and an interactive NC map, an Interactive N.C. choropleth map​ for exploring score distribution visually across the county, and Real-time scoring
+most about, county-by-county insights, visualized with bar charts and an interactive NC map, an interactive N.C. choropleth map​ for exploring score distribution visually across the county, and real-time scoring
 based on socioeconomic variables.
   
 Target scope includes pilot partners in investment, infrastructure, and community development, whether for community engagement, policy planning, or internal analysis. In addition to offering understanding, it is a call to action: what will we do now that we know where we are vulnerable?  Sponsors and partners may engage with communities, customize programs and investments, and foster trust in areas that most need it by knowing where resilience gaps exist.  
