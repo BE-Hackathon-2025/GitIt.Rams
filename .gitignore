@@ -1,0 +1,6 @@
+.venv/
+*.class
+target/
+*.log
+.idea/
+.DS_Store
