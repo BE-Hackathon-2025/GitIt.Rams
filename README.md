@@ -1,7 +1,4 @@
-### TL;DR 🚨 
 
-We did something.
-_______________
 _______________
 
 # EquiScope
