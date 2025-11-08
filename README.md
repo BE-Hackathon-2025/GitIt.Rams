@@ -43,11 +43,11 @@ Example:
 ### Winston Salem State University 🏫
 
 
-### Team Name 🏷
-Coding Costars
+### GitItRams 🏷
+All Hacks No Breaks
 
 ### ✨ Contributors ✨
-**...tell the world who you and your team are 🙂**
-* Team member X 
-* Team member Y 
-* Team member Z 
+Jordan Bailey
+Tristan Sterling
+Cierrah Washington
+Tyeisah Gist
