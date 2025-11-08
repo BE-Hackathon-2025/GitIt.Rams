@@ -47,7 +47,7 @@ Example:
 All Hacks No Breaks
 
 ### ✨ Contributors ✨
-Jordan Bailey \n
-Tristan Sterling
-Cierrah Washington
-Tyeisah Gist
+-Jordan Bailey 
+-Tristan Sterling
+-Cierrah Washington
+-Tyeisah Gist
