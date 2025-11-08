@@ -1,0 +1,411 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Equiscope - Financial Resilience Dashboard</title>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <style>
+    body { 
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #000;
+      color: #e0e0e0;
+      display: flex;
+    }
+    
+    #sidebar {
+      width: 280px;
+      min-width: 280px;
+      background: #0a0a0a;
+      border-right: 2px solid #00d4ff;
+      padding: 20px;
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      overflow-y: auto;
+    }
+    
+    #sidebar h2 {
+      color: #00d4ff;
+      font-size: 1.3em;
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+    
+    .slider-container {
+      margin-bottom: 25px;
+    }
+    
+    .slider-label {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      color: #b0b0b0;
+      font-size: 0.95em;
+    }
+    
+    .slider-label .weight-name {
+      font-weight: 600;
+      color: #00d4ff;
+    }
+    
+    .slider-label .weight-value {
+      color: #00ff88;
+      font-weight: bold;
+    }
+    
+    input[type="range"] {
+      width: 100%;
+      height: 6px;
+      border-radius: 3px;
+      background: #222;
+      outline: none;
+      -webkit-appearance: none;
+    }
+    
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #00d4ff;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    
+    input[type="range"]::-webkit-slider-thumb:hover {
+      background: #00ff88;
+    }
+    
+    input[type="range"]::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #00d4ff;
+      cursor: pointer;
+      border: none;
+      transition: background 0.2s;
+    }
+    
+    input[type="range"]::-moz-range-thumb:hover {
+      background: #00ff88;
+    }
+    
+    #total-weight {
+      margin-top: 15px;
+      padding: 12px;
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 6px;
+      text-align: center;
+      font-weight: bold;
+    }
+    
+    #total-weight.valid {
+      color: #00ff88;
+      border-color: #00ff88;
+    }
+    
+    #total-weight.invalid {
+      color: #ff4444;
+      border-color: #ff4444;
+    }
+    
+    #main-content {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+      max-height: 100vh;
+    }
+    
+    h1 { 
+      color: #00d4ff;
+      font-size: 2.5em;
+      margin-bottom: 10px;
+      margin-top: 0;
+    }
+    h2 { 
+      color: #00d4ff;
+      font-size: 1.8em;
+      margin-top: 30px;
+    }
+    p { 
+      color: #b0b0b0;
+      font-size: 1.1em;
+    }
+    #map { 
+      width: 100%;
+      height: 400px;
+      background: #111;
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 30px;
+      border: 1px solid #333;
+    }
+    #chart { 
+      width: 100%;
+      height: 500px;
+      background: #111;
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 30px;
+    }
+    #county-details-container {
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 16px;
+      max-height: 400px;
+      overflow-y: auto;
+      margin-bottom: 30px;
+    }
+    #county-details-container::-webkit-scrollbar {
+      width: 8px;
+    }
+    #county-details-container::-webkit-scrollbar-track {
+      background: #111;
+      border-radius: 4px;
+    }
+    #county-details-container::-webkit-scrollbar-thumb {
+      background: #00d4ff;
+      border-radius: 4px;
+    }
+    table { 
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td { 
+      padding: 10px 14px;
+      border: 1px solid #333;
+      text-align: left;
+    }
+    th {
+      background: #0a0a0a;
+      color: #00d4ff;
+      font-weight: 600;
+      position: sticky;
+      top: 0;
+    }
+    td {
+      background: #1a1a1a;
+      color: #d0d0d0;
+    }
+    tr:hover td {
+      background: #222;
+    }
+    #ai-box { 
+      margin-top: 30px;
+      padding: 20px;
+      border: 1px solid #333;
+      border-radius: 8px;
+      background: #1a1a1a;
+    }
+    #ai-box h2 {
+      margin-top: 0;
+    }
+    #ai-box p {
+      color: #888;
+    }
+    #ai-box textarea { 
+      width: 100%;
+      height: 100px;
+      background: #111;
+      color: #e0e0e0;
+      border: 1px solid #333;
+      border-radius: 4px;
+      padding: 10px;
+      font-family: monospace;
+      font-size: 14px;
+      resize: vertical;
+    }
+    #ai-box textarea::placeholder {
+      color: #555;
+    }
+    #ai-reply { 
+      white-space: pre-wrap;
+      margin-top: 16px;
+      font-family: 'Courier New', monospace;
+      background: #0a0a0a;
+      color: #0f0;
+      padding: 12px;
+      border: 1px solid #00d4ff;
+      border-radius: 4px;
+      min-height: 60px;
+    }
+    button { 
+      cursor: pointer;
+      background: #00d4ff;
+      color: #000;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 14px;
+      margin-top: 10px;
+      transition: background 0.2s;
+    }
+    button:hover {
+      background: #00b8e6;
+    }
+    button:active {
+      background: #009acc;
+    }
+  </style>
+</head>
+<body>
+  <div id="sidebar">
+    <h2>⚙️ Weight Controls</h2>
+    <p style="font-size: 0.9em; margin-top: 0;">Adjust the scoring formula:</p>
+    
+    <div class="slider-container">
+      <div class="slider-label">
+        <span class="weight-name">Income</span>
+        <span class="weight-value" id="income-value">50%</span>
+      </div>
+      <input type="range" id="income-slider" min="0" max="100" value="50" step="1">
+    </div>
+    
+    <div class="slider-container">
+      <div class="slider-label">
+        <span class="weight-name">Unemployment</span>
+        <span class="weight-value" id="unemployment-value">25%</span>
+      </div>
+      <input type="range" id="unemployment-slider" min="0" max="100" value="25" step="1">
+    </div>
+    
+    <div class="slider-container">
+      <div class="slider-label">
+        <span class="weight-name">Cost of Living</span>
+        <span class="weight-value" id="cost-value">15%</span>
+      </div>
+      <input type="range" id="cost-slider" min="0" max="100" value="15" step="1">
+    </div>
+    
+    <div class="slider-container">
+      <div class="slider-label">
+        <span class="weight-name">Disaster Risk</span>
+        <span class="weight-value" id="disaster-value">10%</span>
+      </div>
+      <input type="range" id="disaster-slider" min="0" max="100" value="10" step="1">
+    </div>
+    
+    <div id="total-weight" class="valid">
+      Total: <span id="total-value">100%</span>
+    </div>
+    
+    <button id="reset-weights" style="width: 100%; margin-top: 15px;">Reset to Default</button>
+  </div>
+
+  <div id="main-content">
+    <h1>Equiscope</h1>
+    <p>Financial Resilience Dashboard for North Carolina Counties</p>
+
+    <h2>North Carolina County Map</h2>
+    <div id="map" style="height: 600px; width: 100%; border-radius: 8px; margin-bottom: 30px;"></div>
+
+    <h2>Resilience Scoring Methodology</h2>
+    <div style="background: #1a1a1a; border: 1px solid #333; border-radius: 8px; padding: 16px; margin-bottom: 30px;">
+      <p style="margin-top: 0;"><strong>Formula:</strong> Resilience Score = (Income × W₁) + (Employment × W₂) + (Cost × W₃) + (Disaster × W₄)</p>
+      <table style="margin-top: 12px;">
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th>Default Weight</th>
+            <th>Data Source</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Median Income</td>
+            <td style="color: #00d4ff; font-weight: bold;">50%</td>
+            <td>Census ACS 2022</td>
+            <td>Normalized household median income (0-1 scale)</td>
+          </tr>
+          <tr>
+            <td>Unemployment Rate</td>
+            <td style="color: #00d4ff; font-weight: bold;">25%</td>
+            <td>Default (5%)</td>
+            <td>Employment stability indicator (inverted)</td>
+          </tr>
+          <tr>
+            <td>Cost of Living</td>
+            <td style="color: #00d4ff; font-weight: bold;">15%</td>
+            <td>Default (0.5)</td>
+            <td>Affordability index (inverted)</td>
+          </tr>
+          <tr>
+            <td>Disaster Risk</td>
+            <td style="color: #00d4ff; font-weight: bold;">10%</td>
+            <td>Default (0.3)</td>
+            <td>Climate/natural disaster exposure (inverted)</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="margin-bottom: 0; color: #888; font-size: 0.95em; margin-top: 12px;">
+        <strong>Population Adjustments:</strong> Counties with population &lt;10k receive -5% penalty, &lt;2k receive -8% penalty
+      </p>
+    </div>
+
+    <div id="chart"></div>
+
+    <h2>County Details</h2>
+    <div id="county-details-container">
+      <table id="county-table">
+        <thead><tr><th>County</th><th>Population</th><th>Income</th><th>Unemployment</th><th>Cost</th><th>DisasterRisk</th><th>Score</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div id="ai-box">
+      <h2>Ask AI Assistant</h2>
+      <p>Query AWS Bedrock (Titan) for insights about resilience data.</p>
+      <textarea id="ai-prompt" placeholder="Example: Compare top 5 counties by resilience score..."></textarea>
+      <button id="ai-send">Ask AI</button>
+      <div id="ai-reply"></div>
+    </div>
+
+    <script>
+      // AI handler
+      document.getElementById('ai-send').addEventListener('click', async () => {
+        const prompt = document.getElementById('ai-prompt').value.trim();
+        const replyBox = document.getElementById('ai-reply');
+        if (!prompt) { replyBox.textContent = 'Prompt empty.'; return; }
+        replyBox.textContent = 'Thinking...';
+        
+        const currentWeights = window.weights || {
+          income: 0.5,
+          unemployment: 0.25,
+          cost: 0.15,
+          disaster: 0.10
+        };
+        
+        try {
+          const res = await fetch('/ai/query', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ 
+              prompt: prompt,
+              weights: currentWeights 
+            })
+          });
+          if (!res.ok) {
+            replyBox.textContent = 'Error: ' + res.status + ' ' + res.statusText;
+            return;
+          }
+          const data = await res.json();
+          replyBox.textContent = data.reply || JSON.stringify(data);
+        } catch (e) {
+          replyBox.textContent = 'Network error: ' + e.message;
+        }
+      });
+    </script>
+
+    <script src="/script.js"></script>
+  </div>
+</body>
+</html>
