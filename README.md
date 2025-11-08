@@ -17,14 +17,22 @@ By leveraging county-level data on economic, social, and environmental factors, 
 Target scope includes pilot partners in investment, infrastructure, and community development, whether for community engagement, policy planning, or internal analysis. In addition to offering understanding, it is a call to action: what will we do now that we know where we are vulnerable?  Sponsors and partners may engage with communities, customize programs and investments, and foster trust in areas that most need it by knowing where resilience gaps exist.  
 
 ## Tech Overview 💻
-**... what tech was used to bring this project to life?**
 
-Example:
-* FastAPI
-* Hugging Face AI Models
-* Next.js
-* Java
-* ReactJS
+* Layer​ & Tools Used​
+
+* Frontend UI: HTML/CSS/JavaScript Framework: Spring Boot 3.x​
+
+* Backend: Tool stack Language: Java 17+​
+
+* (REST + static site)​: Build: Maven HTTP client: RestTemplate​
+
+* Charts: Plotly.js; AI (optional): AWS Bedrock Runtime​
+
+* Titan/Claude: AWS SDK OS/Dev: Windows, VS Code​
+
+* Storing​: Git + GitHub​
+
+
 
 ### Link to Demo Presentation 📽
 **...point us to your PPT or Canva slides 😍**
