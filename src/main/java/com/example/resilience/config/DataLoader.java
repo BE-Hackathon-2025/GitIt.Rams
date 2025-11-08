@@ -4,6 +4,7 @@ import com.example.resilience.model.County;
 import com.example.resilience.service.ResilienceService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,8 +16,10 @@ import java.util.List;
 @Configuration
 public class DataLoader {
 
-    private static final String CENSUS_API_KEY = "c3b895c40dc66379b8b94a7716a0832ebea452d7";
-    private static final String CENSUS_URL = "https://api.census.gov/data/2022/acs/acs5?get=NAME,B19013_001E,B01003_001E&for=county:*&in=state:37&key=" + CENSUS_API_KEY;
+    @Value("${census.api.key:}")
+    private String censusApiKey;
+
+    private static final String CENSUS_BASE_URL = "https://api.census.gov/data/2022/acs/acs5?get=NAME,B19013_001E,B01003_001E&for=county:*&in=state:37";
 
     @Bean
     CommandLineRunner init(ResilienceService service) {
@@ -24,7 +27,8 @@ public class DataLoader {
             System.out.println("DataLoader: Fetching NC county data from Census API...");
             try {
                 RestTemplate restTemplate = new RestTemplate();
-                String response = restTemplate.getForObject(CENSUS_URL, String.class);
+                String url = CENSUS_BASE_URL + (censusApiKey != null && !censusApiKey.isBlank() ? "&key=" + censusApiKey : "");
+                String response = restTemplate.getForObject(url, String.class);
                 
                 ObjectMapper mapper = new ObjectMapper();
                 JsonNode data = mapper.readTree(response);
