@@ -55,7 +55,7 @@ Target scope includes pilot partners in investment, infrastructure, and communit
 All Hacks No Breaks
 
 ### ✨ Contributors ✨
-- [ ]Jordan Bailey
-- [ ]Tristan Sterling
-- [ ]Cierrah Washington
-- [ ]Tyeisah Gist
+- [ ] Jordan Bailey
+- [ ] Tristan Sterling
+- [ ] Cierrah Washington
+- [ ] Tyeisah Gist
