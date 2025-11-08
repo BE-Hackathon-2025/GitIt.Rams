@@ -1,0 +1,270 @@
+body { 
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #000;
+  color: #e0e0e0;
+  display: flex;
+}
+
+#sidebar {
+  width: 280px;
+  min-width: 280px;
+  background: #0a0a0a;
+  border-right: 2px solid #00d4ff;
+  padding: 20px;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  overflow-y: auto;
+}
+
+#sidebar h2 {
+  color: #00d4ff;
+  font-size: 1.3em;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.slider-container {
+  margin-bottom: 25px;
+}
+
+.slider-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  color: #b0b0b0;
+  font-size: 0.95em;
+}
+
+.slider-label .weight-name {
+  font-weight: 600;
+  color: #00d4ff;
+}
+
+.slider-label .weight-value {
+  color: #00ff88;
+  font-weight: bold;
+}
+
+input[type="range"] {
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: #222;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #00d4ff;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  background: #00ff88;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #00d4ff;
+  cursor: pointer;
+  border: none;
+  transition: background 0.2s;
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+  background: #00ff88;
+}
+
+#total-weight {
+  margin-top: 15px;
+  padding: 12px;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: bold;
+}
+
+#total-weight.valid {
+  color: #00ff88;
+  border-color: #00ff88;
+}
+
+#total-weight.invalid {
+  color: #ff4444;
+  border-color: #ff4444;
+}
+
+#main-content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  max-height: 100vh;
+}
+
+h1 { 
+  color: #00d4ff;
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  margin-top: 0;
+}
+
+h2 { 
+  color: #00d4ff;
+  font-size: 1.8em;
+  margin-top: 30px;
+}
+
+p { 
+  color: #b0b0b0;
+  font-size: 1.1em;
+}
+
+#map { 
+  width: 100%;
+  height: 400px;
+  background: #111;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 30px;
+  border: 1px solid #333;
+}
+
+#chart { 
+  width: 100%;
+  height: 350px;
+  background: #111;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 30px;
+}
+
+#county-details-container {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 16px;
+  max-height: 400px;
+  overflow-y: auto;
+  margin-bottom: 30px;
+}
+
+#county-details-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+#county-details-container::-webkit-scrollbar-track {
+  background: #111;
+  border-radius: 4px;
+}
+
+#county-details-container::-webkit-scrollbar-thumb {
+  background: #00d4ff;
+  border-radius: 4px;
+}
+
+table { 
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td { 
+  padding: 10px 14px;
+  border: 1px solid #333;
+  text-align: left;
+}
+
+th {
+  background: #0a0a0a;
+  color: #00d4ff;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+}
+
+td {
+  background: #1a1a1a;
+  color: #d0d0d0;
+}
+
+tr:hover td {
+  background: #222;
+}
+
+#ai-box { 
+  margin-top: 30px;
+  padding: 20px;
+  border: 1px solid #333;
+  border-radius: 8px;
+  background: #1a1a1a;
+}
+
+#ai-box h2 {
+  margin-top: 0;
+}
+
+#ai-box p {
+  color: #888;
+}
+
+#ai-box textarea { 
+  width: 100%;
+  height: 100px;
+  background: #111;
+  color: #e0e0e0;
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 10px;
+  font-family: monospace;
+  font-size: 14px;
+  resize: vertical;
+}
+
+#ai-box textarea::placeholder {
+  color: #555;
+}
+
+#ai-reply { 
+  white-space: pre-wrap;
+  margin-top: 16px;
+  font-family: 'Courier New', monospace;
+  background: #0a0a0a;
+  color: #0f0;
+  padding: 12px;
+  border: 1px solid #00d4ff;
+  border-radius: 4px;
+  min-height: 60px;
+}
+
+button { 
+  cursor: pointer;
+  background: #00d4ff;
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 14px;
+  margin-top: 10px;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background: #00b8e6;
+}
+
+button:active {
+  background: #009acc;
+}

@@ -1,0 +1,51 @@
+# ===== Maven / Java build artifacts =====
+target/
+*.class
+*.jar
+*.war
+*.ear
+
+# ===== Logs =====
+logs/
+*.log
+
+# ===== IDE / Editor =====
+.vscode/
+.idea/
+*.iml
+*.swp
+
+# ===== OS files =====
+.DS_Store
+Thumbs.db
+
+# ===== Environment & Secrets (DO NOT COMMIT) =====
+.env
+.env.*
+application-local.properties
+*.secret.properties
+*.key
+*.pem
+.aws/
+
+# ===== Python (streamlit legacy) =====
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.streamlit/
+
+# ===== Node (if added later) =====
+node_modules/
+dist/
+
+# ===== Misc cache =====
+*.cache
+
+# If you accidentally committed credentials earlier, ROTATE THEM IMMEDIATELY.
+.venv/
+*.class
+target/
+*.log
+.idea/
+.DS_Store
